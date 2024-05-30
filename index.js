@@ -2,6 +2,9 @@
 const express = require("express");
 const app = express();
 const path = require('path')
+require('dotenv').config()
+
+console.log(process.env.API_KEY)
 
 var ip = '0.0.0.0'
 //var ip = '192.168.0.110'
