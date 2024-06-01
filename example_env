@@ -1,0 +1,8 @@
+## Server
+SERVER_IP=127.0.0.1
+PORT=3000
+FIRST_NAME=<first name>
+
+## OpenAI
+OPENAI_API_KEY=<OpenAI API Key>
+ASST_ID=<Assistant ID>
