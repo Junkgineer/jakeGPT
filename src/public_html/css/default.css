@@ -1,0 +1,31 @@
+#chatWindow {
+    height: 75vh;
+    max-height: 75vh;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.in-text {
+    color: #eaeaea;
+    font-weight: bold;
+}
+.out-text {
+    color: #fafafa;
+    background-color: #2f2f2f;
+    border: #2f2f2f;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+}
+.sys-text {
+    color: #6f6f6f;
+    font-weight: normal;
+    font-style: italic;
+}
+.time-text {
+    color: #6f6f6f;
+    font-size: 10px;
+    font-weight: normal;
+}
+.messages {
+    background-color: #fafafa;
+}

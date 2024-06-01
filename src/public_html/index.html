@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <script>var exports = {};</script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+        <link href="./css/theme/bootstrap-darkly.css" type="text/css" rel="stylesheet">
+        <link href="./css/default.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row mt-4">
+                <div class="col-3">
+                    <div id="threadIDText" class="in-text">jake.meyer@gmail.com</div>
+                </div>
+                <div class="col">
+                    <div id="chatWindow" class="overflow-auto">
+                        
+                    </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-3">
+
+                </div>
+                <div class="col">
+                    <div class="input-group mt-3">
+                        <button class="btn btn-outline-secondary" type="button" id="deleteThread" onclick="example1()">What are Jake's primary skills?</button>
+                        <button class="btn btn-outline-secondary" type="button" id="createThread" onclick="example2()">Tell me a little about Jake</button>
+                        <button class="btn btn-outline-secondary" type="button" id="testBtn" onclick="Test()">Test</button>
+                    </div>
+
+                    <div class="input-group mt-1 mb-3">
+                        <input id="chatInput" type="text" class="form-control" placeholder="Chat message" aria-label="Chat message" aria-describedby="chatSubmit" value="Does Jake know JavaScript?">
+                        <button id="chatSubmit" class="btn btn-outline-secondary" type="button" onclick="MessageInput()">Submit</button>
+                    </div>
+                </div>
+                <div class="col-3">
+
+                </div>
+            </div>
+        </div>
+        <script>
+            var chatWindow = document.getElementById('chatWindow');
+            var chatInput = document.getElementById('chatInput');
+            var textElement = document.createElement("div");
+            const socket = new WebSocket('ws://127.0.0.1:3000');
+            // Connection opened
+            socket.addEventListener('open', function (event) {
+                console.log('Connected to Server')
+            });
+
+            // Listen for messages
+            socket.addEventListener('message', function (event) {
+                ReceiveMessage(event.data)
+            });
+            function Test(){
+
+            }
+            function example1() {
+                SendMessage("What are Jake's primary skills?")
+            }
+            function example2() {
+                SendMessage("Tell me a little about Jake.")
+            }
+            function ReceiveMessage(text) {
+                if (text === 'STR') {
+                    textElement = document.createElement("div");
+                    textElement.classList.add('mt-2')
+                    textElement.classList.add('mb-2')
+                    textElement.classList.add('in-text')
+                    textElement.classList.add('overflow-visible')
+
+                    let colElement = document.createElement("div")
+                    colElement.classList.add('col')
+                    colElement.appendChild(textElement)
+
+                    let messageElement = document.createElement("div")
+                    messageElement.classList.add('row')
+                    messageElement.appendChild(colElement)
+
+                    chatWindow.appendChild(messageElement)
+                }  else {
+                    textElement.innerHTML += `${text}`;
+                }
+            }
+
+            function SendMessage(text) {
+                console.log(`Sending chat message: ${text}`)
+                let msg = `<div class="col-6"></div><div class="col-6"><div class="mt-2 mb-2 out-text text-center overflow-visible">${text}</div></div>`
+                let messageElement = document.createElement("div")
+                messageElement.classList.add('row')
+                messageElement.innerHTML = msg
+                chatWindow.appendChild(messageElement)
+
+                socket.send(text);
+                chatInput.value = '';
+            }
+            function MessageInput() {
+                SendMessage(chatInput.value)
+            }
+            chatInput.addEventListener("keypress", (e) => {
+            if (e.which === 13) {
+                SendMessage(chatInput.value);
+            }
+        })
+        </script>
+    </body>
+</html>
