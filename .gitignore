@@ -1,8 +1,8 @@
 # local env files
 .env*.local
 .env
-*.code-workspace
+**.code-workspace
 
 # node modules
-node_modules/
+**node_modules/
 node_modules
