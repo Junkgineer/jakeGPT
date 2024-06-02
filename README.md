@@ -11,9 +11,10 @@ however, did an excellent job. Having said that, please keep in mind that this, 
 ## To Use
 1. Create an [OpenAI Assistant](https://platform.openai.com/assistants/), and provide it with the necessary documents (such as your resume' and any other data you wish it to reference).
 2. Edit `example_env` with your OpenAI API key, the Assistant ID, and other information. Save it as `.env`.
-3. There is a variable after the imports in `server.js` that allows for testing the code WITHOUT using any OpenAI API calls. It is set by default to `true`. Simply change `const TESTMODE = true;` to `const TESTMODE = false;` to start using the app normally.
-4. Unless your name just happens to be Jake as well, edit the frontend text in the HTML to personalize your instance.
-5. Run `node src/server.js` to start the server, and browse to the IP given to start chatting!
+3. Set the IP address in index.html to the same IP address you use in the .env file.
+4. There is a variable after the imports in `server.js` that allows for testing the code WITHOUT using any OpenAI API calls. It is set by default to `true`. Simply change `const TESTMODE = true;` to `const TESTMODE = false;` to start using the app normally.
+5. Unless your name just happens to be Jake as well, edit the frontend text in the HTML to personalize your instance.
+6. Run `node src/server.js` to start the server, and browse to the IP given to start chatting!
 
 ## App Details
 * This app uses Node.js [WebSocket](https://www.npmjs.com/package/websocket) to communicate between the frontend and the backend instead of standard HTTP API calls. WebSocket handles the streaming text much more easily, and allows for a very clean and easy setup.
