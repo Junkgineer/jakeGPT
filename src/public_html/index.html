@@ -13,18 +13,19 @@
     <body>
         <div class="container-fluid">
             <div class="row mt-4">
-                <div class="col-3">
-                    <div class="in-text">jake.meyer@gmail.com</div>
-                    <a href="https://junkgineering.com">junkgineering.com</a>
-                    <a href="https://github.com/Junkgineer">View on GitHub</a>
+                <div class="col-3 text-center">
+                    <div class="info-text">This chat is using <span class="bold">GPT-4o</span></div>
+                    <div class="info-text">Please remember that AI, no matter how good, can make mistakes. <span class="italic">Please verify all information with me personally.</span></div>
                 </div>
                 <div class="col">
                     <div id="chatWindow" class="overflow-auto">
                         
                     </div>
                 </div>
-                <div class="col-3">
-
+                <div class="col-3 text-center">
+                    <div class="info-text">jake.meyer@gmail.com</div>
+                    <div class="info-text">Website: <a href="https://junkgineering.com">junkgineering.com</a></div>
+                    <div  class="info-text">View this code on <a href="https://github.com/Junkgineer/jakeGPT"> GitHub</a> </div>
                 </div>
             </div>
             <div class="row mt-4">
@@ -33,13 +34,13 @@
                 </div>
                 <div class="col">
                     <div class="input-group mt-3">
-                        <button class="btn btn-outline-secondary" type="button" id="deleteThread" onclick="example1()">What are Jake's primary skills?</button>
-                        <button class="btn btn-outline-secondary" type="button" id="createThread" onclick="example2()">Tell me a little about Jake</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="example1()">What are Jake's primary skills?</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="example2()">Tell me a little about Jake</button>
                     </div>
 
                     <div class="input-group mt-1 mb-3">
                         <input id="chatInput" type="text" class="form-control" placeholder="Chat message" aria-label="Chat message" aria-describedby="chatSubmit">
-                        <button id="chatSubmit" class="btn btn-outline-secondary" type="button" onclick="MessageInput()">Submit</button>
+                        <button id="chatSubmit" class="btn btn-outline-secondary" type="button" onclick="MessageInput()">Send</button>
                     </div>
                 </div>
                 <div class="col-3">
