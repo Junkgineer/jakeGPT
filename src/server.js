@@ -14,7 +14,7 @@ const openai = new OpenAI();
 let assistant;
 
 async function setupAssistant() {
-    // Retrieve the assistant we already created usign the OpenAI Assistant UI (https://platform.openai.com/assistants/)
+    // Retrieve the assistant we already created using the OpenAI Assistant UI (https://platform.openai.com/assistants/)
     let assistants = await openai.beta.assistants.list();
     let assistant = assistants.data.find(assistant => assistant.id == process.env.ASST_ID);
 }
@@ -54,14 +54,13 @@ socketserver.on('connection', async function connection(ws) {
                 const result = await run.finalRun();
             });
         } else {
-            let stop;
-            setTimeout(() => {
-                clearTimeout(stop);
-            }, 1000)
-            ws.send('STR');
-            stop = setInterval(() => {
+            let stop = setInterval(() => {
                 ws.send('Lorem ipsum dolor sit amet. ')
             }, 10)
+            setTimeout(() => {
+                clearTimeout(stop);
+            }, 500)
+            ws.send('STR');
         }
     });
 });
