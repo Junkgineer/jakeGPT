@@ -14,8 +14,15 @@
         <div class="container-fluid">
             <div class="row mt-4">
                 <div class="col-3 text-center">
-                    <div class="info-text">This chat is using <span class="bold">GPT-4o</span></div>
-                    <div class="info-text">Please remember that AI, no matter how good, can make mistakes. <span class="italic">Please verify all information with me personally.</span></div>
+                    
+                    <div class="info-text-headline"><span class="bold highlight">Welcome to my interactive AI chat assistant!</span> This assistant is designed to provide prospective employers with an engaging and efficient way 
+                        to learn about my professional experience. Powered by advanced AI, it has been trained using my detailed resume to answer your questions about my career as a 
+                        <span class="bold highlight">Senior Software Engineer</span> and <span class="bold highlight">Modernization Manager</span> for the State of Oklahoma, my diverse work history, and the skills I've acquired over the years. 
+                        Feel free to ask about my projects, technical expertise, or any other aspects of my professional journey. I'm excited for you to discover how my background 
+                        can be a perfect fit for your team!
+                    </div>
+                    <div class="info-text">This chat is using <span class="bold highlight">GPT-4o</span></div>
+                    <div class="info-text">Please remember that AI, no matter how good, can make mistakes. <span class="italic highlight">Please verify all information with me personally before making any judgements.</span></div>
                 </div>
                 <div class="col">
                     <div id="chatWindow" class="overflow-auto">
@@ -36,6 +43,7 @@
                     <div class="input-group mt-3">
                         <button class="btn btn-outline-secondary" type="button" onclick="example1()">What are Jake's primary skills?</button>
                         <button class="btn btn-outline-secondary" type="button" onclick="example2()">Tell me a little about Jake</button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="example3()">How many years of experience does Jake have?</button>
                     </div>
 
                     <div class="input-group mt-1 mb-3">
@@ -68,6 +76,9 @@
             function example2() {
                 SendMessage("Tell me a little about Jake.")
             }
+            function example3() {
+                SendMessage("How many years of experience does Jake have?")
+            }            
             function ReceiveMessage(text) {
                 if (text === 'STR') {
                     textElement = document.createElement("div");

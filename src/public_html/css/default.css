@@ -15,6 +15,17 @@
     border-width: 1px;
     border-radius: 20px;
 }
+.info-text-headline {
+    color: #c9c9c9;
+    font-size: medium;
+    padding: 15px;
+    margin: 5px;
+    background-color: #2f2f2f;
+    border: #2f2f2f;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+}
 .bold {
     font-weight: bold;
 }
@@ -24,6 +35,9 @@
 .in-text {
     color: #eaeaea;
     font-weight: bold;
+}
+.highlight {
+    color: #009667;
 }
 .out-text {
     color: #fafafa;
