@@ -27,7 +27,7 @@ const socketserver = new WebSocket.Server({ server: server });
 socketserver.on('connection', async function connection(ws) {
     console.log('A new client connected.');
     ws.send('STR');
-    ws.send(`Welcome to ${process.env.FIRST_NAME}GPT! I'm here to assist with any questions you make have about ${process.env.FIRST_NAME}'s professional qualifications, so ask away!`);
+    ws.send(`Welcome to ${process.env.FIRST_NAME}GPT (beta)! I'm here to assist with any questions you make have about ${process.env.FIRST_NAME}'s professional qualifications, so ask away!`);
 
     var thread;
     if (!TESTMODE) {

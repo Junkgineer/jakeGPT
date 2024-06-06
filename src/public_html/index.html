@@ -11,18 +11,40 @@
         <link href="./css/default.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+      
+
         <div class="container-fluid">
+
+            <div class="modal fade" id="introModal" tabindex="-1" aria-labelledby="introModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="introModalLabel">Jake's Resume' Chatbot (beta)</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="info-text-headline"><span class="bold highlight">Welcome to my interactive AI chat assistant!</span> This assistant is designed to provide prospective employers with an engaging and efficient way 
+                            to learn about my professional experience.
+                        </div>
+                        <div class="info-text-headline">Powered by advanced AI, it has been trained using my detailed resume to answer your questions about my career as a 
+                            <span class="bold highlight">Senior Software Engineer</span> and <span class="bold highlight">Modernization Manager</span> for the State of Oklahoma, my diverse work history, and the skills I've acquired over the years.
+                        </div>
+                        <div class="info-text-headline">Feel free to ask about my projects, technical expertise, or any other aspects of my professional journey. There are also example questions provided below. I'm excited for you to discover how my background 
+                            can be a perfect fit for your team!
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             <div class="row mt-4">
                 <div class="col-3 text-center">
-                    
-                    <div class="info-text-headline"><span class="bold highlight">Welcome to my interactive AI chat assistant!</span> This assistant is designed to provide prospective employers with an engaging and efficient way 
-                        to learn about my professional experience. Powered by advanced AI, it has been trained using my detailed resume to answer your questions about my career as a 
-                        <span class="bold highlight">Senior Software Engineer</span> and <span class="bold highlight">Modernization Manager</span> for the State of Oklahoma, my diverse work history, and the skills I've acquired over the years. 
-                        Feel free to ask about my projects, technical expertise, or any other aspects of my professional journey. I'm excited for you to discover how my background 
-                        can be a perfect fit for your team!
-                    </div>
                     <div class="info-text">This chat is using <span class="bold highlight">GPT-4o</span></div>
                     <div class="info-text">Please remember that AI, no matter how good, can make mistakes. <span class="italic highlight">Please verify all information with me personally before making any judgements.</span></div>
+                    <div class="info-text">This application is in <span class="bold highlight">early beta</span>. Additional biographical data is being added all the time, and bugs regularly squashed.</div>
                 </div>
                 <div class="col">
                     <div id="chatWindow" class="overflow-auto">
@@ -57,6 +79,9 @@
             </div>
         </div>
         <script>
+            $(window).on('load', function() {
+                $('#introModal').modal('show');
+            });
             var chatWindow = document.getElementById('chatWindow');
             var chatInput = document.getElementById('chatInput');
             var textElement = document.createElement("div");
