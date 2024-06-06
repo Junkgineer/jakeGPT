@@ -1,4 +1,4 @@
-# JakeGPT - A ChatGPT based Resume' ChatBot
+# JakeGPT (beta) - A ChatGPT based Resume' ChatBot
 
 JakeGPT utilizes an [OpenAI Assistant](https://platform.openai.com/assistants/) and it's associated API to create a (very) simple Node.JS web app that can answer questions about my professional experience. To round out the conversations, it also includes some biographical data, as well as hobbies and interests.
 
