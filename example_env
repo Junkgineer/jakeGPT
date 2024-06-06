@@ -2,6 +2,7 @@
 SERVER_IP=127.0.0.1
 PORT=3000
 FIRST_NAME=<first name>
+LOG_FILE=log.txt
 
 ## OpenAI
 OPENAI_API_KEY=<OpenAI API Key>

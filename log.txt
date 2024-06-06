@@ -1,0 +1,4 @@
+[4-5-2024 9:23] Received: What are Jake's primary skills?
+[4-5-2024 9:23] Response: Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. 
+[4-5-2024 9:23] Received: Tell me a little about Jake.
+[4-5-2024 9:23] Response: Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. 

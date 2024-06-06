@@ -1,5 +1,6 @@
 #!/home/jake/.nvm/versions/node/v16.15.1/bin/node
 require('dotenv').config()
+const fs = require('fs');
 const express = require("express");
 const app = express()
 const server = require('http').createServer(app);
@@ -9,7 +10,7 @@ const OpenAI = require('openai');
 
 // While in test mode, the app doesn't hit the OpenAI API at all, and instead streams Lorum Ipsum.
 const TESTMODE = true;
-
+const logFile = process.env.LOG_FILE
 const openai = new OpenAI();
 let assistant;
 
@@ -32,11 +33,12 @@ socketserver.on('connection', async function connection(ws) {
     if (!TESTMODE) {
         thread = await openai.beta.threads.create();
         console.log(`Thread Created: ${thread.id}`)
+        WriteToLog(`Thread Created: ${thread.id}\n`, true)
     }
 
     ws.on('message', async function incoming(msg) {
-        console.log('Received: %s', msg);
-
+        console.log(`Received: ${msg}`);
+        WriteToLog(`Received: ${msg}\n`, true)
         if (!TESTMODE) {
             const message = await openai.beta.threads.messages.create(
                 thread.id,
@@ -46,20 +48,28 @@ socketserver.on('connection', async function connection(ws) {
                 }
             );
             console.log(`Message Created: ${message.id}`)
-
+            WriteToLog(`Message Created: ${message.id}\n`, true)
+            WriteToLog(`Response: `, true)
             socketserver.clients.forEach(async (client) => {
                 client.send('STR');
                 const run = openai.beta.threads.runs.createAndStream(thread.id, {assistant_id: process.env.ASST_ID})
-                    .on('textDelta', (textDelta) => client.send(textDelta.value));
+                    .on('textDelta', (textDelta) => {
+                        client.send(textDelta.value)
+                        WriteToLog(textDelta.value)
+                    });
                 const result = await run.finalRun();
+                WriteToLog('\n')
             });
         } else {
+            WriteToLog(`Response: `, true)
             let stop = setInterval(() => {
                 ws.send('Lorem ipsum dolor sit amet. ')
-            }, 10)
+                WriteToLog(`Lorem ipsum dolor sit amet. `)
+            }, 30)
             setTimeout(() => {
                 clearTimeout(stop);
-            }, 500)
+                WriteToLog('\n')
+            }, 200)
             ws.send('STR');
         }
     });
@@ -80,6 +90,16 @@ server.listen(process.env.PORT, process.env.SERVER_IP, function () {
     }
 });
 
+function WriteToLog(text, timestamp) {
+    if (timestamp) {
+        text = `[${new Date().getDay()}-${new Date().getMonth()}-${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}] ${text}`
+    }
+    fs.appendFile(logFile, text, (err) => {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
 // Make it so we exit gracefully.
 process.on('SIGTERM', () => {
     console.info('SIGTERM signal received.');
