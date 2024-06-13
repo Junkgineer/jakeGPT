@@ -127,15 +127,26 @@
             }
 
             function SendMessage(text) {
-                console.log(`Sending chat message: ${text}`)
                 let msg = `<div class="col-6"></div><div class="col-6"><div class="mt-2 mb-2 out-text text-center overflow-visible">${text}</div></div>`
                 let messageElement = document.createElement("div")
                 messageElement.classList.add('row')
                 messageElement.innerHTML = msg
                 chatWindow.appendChild(messageElement)
+                // console.log(ValidateInput(text))
+                if (ValidateInput(text)){
 
-                socket.send(text);
-                chatInput.value = '';
+                    console.log(`Sending chat message: ${text}`)
+                    socket.send(text);
+                    chatInput.value = '';
+                } else {
+                    console.log('Input is not valid!')
+                    ReceiveMessage('STR');
+                    ReceiveMessage("I'm sorry, but I didn't understand your question. I'm only programmed to understand English.")
+                    chatInput.value = '';
+                }
+            }
+            function ValidateInput(text) {
+                return /(^[A-Za-z0-9 _.,!"'/$&?]+$)/.test(text);
             }
             function MessageInput() {
                 SendMessage(chatInput.value)
