@@ -92,7 +92,7 @@ server.listen(process.env.PORT, process.env.SERVER_IP, function () {
 
 function WriteToLog(text, timestamp) {
     if (timestamp) {
-        text = `[${new Date().getDay()}-${new Date().getMonth()}-${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}] ${text}`
+        text = `[${new Date(Date.now()).toLocaleDateString()} ${new Date().getHours()}:${new Date().getMinutes()}] ${text}`
     }
     fs.appendFile(logFile, text, (err) => {
         if (err) {
